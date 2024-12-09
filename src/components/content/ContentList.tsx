@@ -58,6 +58,10 @@ export default function ContentList(props: ContentListProps) {
 
     return(
         <div>
+            <button onClick={() => window.location.reload()}>
+                Refresh Content List
+            </button>
+            <br />
             <input 
                 type="text" 
                 placeholder="Search educational content..." 
