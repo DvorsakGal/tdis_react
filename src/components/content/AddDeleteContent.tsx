@@ -7,6 +7,7 @@ export default function AddDeleteContent() {
         title: "",
         summary: "",
         link: "",
+        level: "",
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,10 +21,11 @@ export default function AddDeleteContent() {
                 title: formData.title,
                 summary: formData.summary,
                 link: formData.link,
+                level: formData.level
             });
             alert(response.data.message);
             setFormType(null);
-            setFormData({title: "", summary: "", link: ""});
+            setFormData({title: "", summary: "", link: "", level: ""});
         } catch (error:any) {
             alert(error.response?.data?.error || "An error occured!")
         }
@@ -36,7 +38,7 @@ export default function AddDeleteContent() {
             });
             alert(response.data.message);
             setFormType(null);
-            setFormData({title: "", summary: "", link: ""});
+            setFormData({title: "", summary: "", link: "", level: ""});
         } catch (error:any) {
             alert(error.response?.data.error || "An error occured!");
         }
@@ -94,6 +96,17 @@ export default function AddDeleteContent() {
                             id="link"
                             name="link"
                             value={formData.link}
+                            onChange={handleInputChange}
+                            required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="level">Level:</label>
+                            <input
+                            type="text"
+                            id="level"
+                            name="level"
+                            value={formData.level}
                             onChange={handleInputChange}
                             required
                             />
