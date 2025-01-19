@@ -1,5 +1,6 @@
 import { FormEvent, useRef, useState } from "react"
 import axios from "axios";
+import styles from "./AiTutor.module.css";
 
 
 export default function AiTutor() {
@@ -29,25 +30,33 @@ export default function AiTutor() {
     }
 
     return(
-        <>
-        <form onSubmit={handleAskTutor}>
-            <label htmlFor="prompt">Enter your physics question:</label>
-            <textarea id="prompt" ref={prompt} />
-            <button>Ask Schrody!</button>
-        </form>
-        <div>
-            <h3>Schrody says:</h3>
-            <div>
-                {error ? (
-                    <p style={{color: "red"}}>Error: {error}</p>
-                ) : response ? (
-                    <p>{response}</p>
-                ) : (
-                    <p>Waiting for question...</p>
-                )}
+        <div className={styles.tutorContainer}>
+            <form onSubmit={handleAskTutor} className={styles.tutorForm}>
+                <label htmlFor="prompt" className={styles.label}>
+                    Enter your physics question:
+                </label>
+                <textarea
+                    id="prompt"
+                    ref={prompt}
+                    className={styles.textarea}
+                    placeholder="Type your question here..."
+                />
+                <button className={styles.button}>Ask Schrody!</button>
+            </form>
+
+            <div className={styles.responseContainer}>
+                <h3 className={styles.responseTitle}>Schrody says:</h3>
+                <div className={styles.responseContent}>
+                    {error ? (
+                        <p className={styles.error}>Error: {error}</p>
+                    ) : response ? (
+                        <p className={styles.response}>{response}</p>
+                    ) : (
+                        <p className={styles.waiting}>Waiting for a question...</p>
+                    )}
+                </div>
             </div>
         </div>
-        </>
         
     );
 }

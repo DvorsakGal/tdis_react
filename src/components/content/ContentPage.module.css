@@ -1,0 +1,25 @@
+/* ContentPage.module.css */
+.container {
+    display: flex;
+    height: 100vh; /* Full height of the viewport */
+    width: 100%; /* Full width of the viewport */
+}
+
+.addDeleteContent {
+    width: 30%; /* 30% of the container's width */
+    background-color: #f4f4f4; /* Optional background color */
+    padding: 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Keeps it fixed on the left side */
+    height: 100%; /* Matches the height of the container */
+    overflow-y: auto; /* Add scrolling if content overflows */
+}
+
+.contentList {
+    width: 70%; /* 70% of the container's width */
+    margin-left: 30%; /* Offsets by the width of the left panel */
+    padding: 4rem;
+    overflow-y: auto; /* Makes it scrollable */
+    height: 100%; /* Matches the height of the container */
+    background-color: #fff; /* Optional background color */
+}

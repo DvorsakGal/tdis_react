@@ -3,6 +3,7 @@ import InputTopic from "./TopicInput";
 import TopicList from "./TopicList";
 import Formulas from "./Formulas";
 import AiTutor from "./AiTutor";
+import styles from "./Helper.module.css";
 
 export type TopicType = {
     id: number;
@@ -29,11 +30,21 @@ export default function Helper() {
     }
 
     return(
-        <>
-            <InputTopic onAddTopic={handleAddTopic}></InputTopic>
-            <TopicList topics={topics} />
-            <Formulas topics={topics} />
-            <AiTutor />
-        </>
+        <div className={styles.helper}>
+            <div className={`${styles["helper-section"]} ${styles["section-one"]}`}>
+                <div className={styles["section-one-left"]}>
+                    <InputTopic onAddTopic={handleAddTopic} />
+                    <TopicList topics={topics} />
+                </div>
+                <div className={styles["section-one-right"]}>
+                    <Formulas topics={topics} />
+                </div>
+            </div>
+
+            <div className={`${styles["helper-section"]} ${styles["section-two"]}`}>
+                <AiTutor />
+            </div>
+        </div>
     )
 }
+//<div className={styles.addDeleteContent}></div>

@@ -1,5 +1,4 @@
 import './App.css'
-import ContentList from './components/content/ContentList'
 import ContentPage from './components/content/ContentPage'
 import Helper from './components/helper/Helper'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -10,11 +9,13 @@ function App() {
     <>
         <Router>
           <Navbar />
-          <Routes>
-            <Route path="/" element={<ContentPage />}/>
-            <Route path="/workstation" element={<Helper />}/>
-            <Route path="/profile" element={<ContentPage />}/>
-          </Routes>
+          <div className='main-content'>
+            <Routes>
+              <Route path="/" element={<ContentPage />}/>
+              <Route path="/workstation" element={<Helper />}/>
+              <Route path="/profile" element={<ContentPage />}/>
+            </Routes>
+          </div>
         </Router>
     </>
   )
