@@ -22,7 +22,7 @@ export default function Formulas(props: FormulasProps) {
         console.log("Sending topics to the backend: ", topics)
 
         try {
-            const response = await axios.post("http://127.0.0.1:5000/get_formulas", {
+            const response = await axios.post("http://127.0.0.1:5000/formulas", {
                 topics: topics,
             });
             setData(response.data);

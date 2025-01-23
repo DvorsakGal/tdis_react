@@ -29,12 +29,17 @@ export default function Helper() {
         })
     }
 
+    // Delete a topic by ID
+    function handleDeleteTopic(id: number) {
+        setTopics((prevTopics) => prevTopics.filter((topic) => topic.id !== id));
+    }
+
     return(
         <div className={styles.helper}>
             <div className={`${styles["helper-section"]} ${styles["section-one"]}`}>
                 <div className={styles["section-one-left"]}>
                     <InputTopic onAddTopic={handleAddTopic} />
-                    <TopicList topics={topics} />
+                    <TopicList topics={topics} onDeleteTopic={handleDeleteTopic} />
                 </div>
                 <div className={styles["section-one-right"]}>
                     <Formulas topics={topics} />

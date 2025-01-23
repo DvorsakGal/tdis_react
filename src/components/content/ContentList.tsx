@@ -56,6 +56,7 @@ export default function ContentList(props: ContentListProps) {
         return () => clearTimeout(timeoutId);
     }, [searchTerm, props.contents]);
 
+
     return(
         <div>
             <button onClick={() => window.location.reload()}>

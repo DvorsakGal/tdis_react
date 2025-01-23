@@ -9,6 +9,7 @@ export default function AddDeleteContent() {
         link: "",
         level: "",
     });
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -23,7 +24,7 @@ export default function AddDeleteContent() {
                 link: formData.link,
                 level: formData.level
             });
-            alert(response.data.message);
+            setSuccessMessage("Content added successfully!");
             setFormType(null);
             setFormData({title: "", summary: "", link: "", level: ""});
         } catch (error:any) {
@@ -36,7 +37,7 @@ export default function AddDeleteContent() {
             const response = await axios.delete("http://127.0.0.1:5000/educational-data", {
                 data: {title: formData.title},
             });
-            alert(response.data.message);
+            setSuccessMessage("Content deleted successfully!");
             setFormType(null);
             setFormData({title: "", summary: "", link: "", level: ""});
         } catch (error:any) {
@@ -44,18 +45,71 @@ export default function AddDeleteContent() {
         }
     };
 
+    const containerStyle = {
+        fontFamily: "'Arial', sans-serif",
+        padding: "20px",
+        maxWidth: "500px",
+        margin: "0 auto",
+        border: "1px solid #ccc",
+        borderRadius: "8px",
+        backgroundColor: "#f9f9f9",
+    };
+
+    const buttonStyle = {
+        padding: "10px 15px",
+        margin: "5px",
+        backgroundColor: "#007BFF",
+        color: "white",
+        border: "none",
+        borderRadius: "4px",
+        cursor: "pointer",
+        fontWeight: "bold",
+    };
+
+    const buttonStyleDelete = {
+        ...buttonStyle,
+        backgroundColor: "#DC3545", // Red for delete
+    };
+
+    const formStyle = {
+        marginTop: "20px",
+    };
+
+    const inputStyle = {
+        width: "100%",
+        padding: "10px",
+        margin: "10px 0",
+        border: "1px solid #ccc",
+        borderRadius: "4px",
+        fontSize: "14px",
+    };
+
+    const submitButtonStyle = {
+        ...buttonStyle,
+        width: "100%",
+        backgroundColor: "#28A745", // Green for submit
+    };
+
+    const messageStyle = {
+        color: successMessage?.includes("successfully") ? "green" : "red",
+        marginTop: "10px",
+    };
+
     return(
-        <div>
+        <div style={containerStyle}>
             <h2>
                 Manage Educational Content
             </h2>
             <div>
-                <button onClick={() => setFormType("add")}>Add Content</button>
-                <button onClick={() => setFormType("delete")}>Delete Content</button>
+                <button style={buttonStyle} onClick={() => setFormType("add")}>Add Content</button>
+                <button style={buttonStyleDelete} onClick={() => setFormType("delete")}>Delete Content</button>
+            </div>
+            <div>
+                {successMessage && <p style={messageStyle}>{successMessage}</p>}
             </div>
 
             {formType && (
-                <form onSubmit={(e) => {
+                <form style={formStyle} onSubmit={(e) => {
                     e.preventDefault();
                     if(formType === "add") handleAddContent();
                     else if(formType === "delete") handleDeleteContent();
@@ -72,6 +126,7 @@ export default function AddDeleteContent() {
                         value={formData.title}
                         onChange={handleInputChange}
                         required
+                        style={inputStyle}
                         />
                     </div>
 
@@ -87,6 +142,7 @@ export default function AddDeleteContent() {
                             value={formData.summary}
                             onChange={handleInputChange}
                             required
+                            style={inputStyle}
                             />
                         </div>
                         <div>
@@ -98,6 +154,7 @@ export default function AddDeleteContent() {
                             value={formData.link}
                             onChange={handleInputChange}
                             required
+                            style={inputStyle}
                             />
                         </div>
                         <div>
@@ -109,12 +166,13 @@ export default function AddDeleteContent() {
                             value={formData.level}
                             onChange={handleInputChange}
                             required
+                            style={inputStyle}
                             />
                         </div>
                         </>
                     )}
 
-                    <button type="submit">Submit</button>
+                    <button type="submit" style={submitButtonStyle}>Submit</button>
 
                 </form>
             )}

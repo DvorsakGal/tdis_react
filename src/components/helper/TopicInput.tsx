@@ -1,4 +1,5 @@
 import { FormEvent, useRef } from "react"
+import styles from "./InputTopic.module.css";
 
 type TopicFormProp = {
     onAddTopic: (topicName: string) => void;
@@ -19,10 +20,16 @@ export default function InputTopic(props: TopicFormProp) {
 
 
     return(
-        <form onSubmit={handleSubmitTopic}>
-            <label htmlFor="newTopic">Add a topic: </label>
-            <input id="newTopic" type="text" ref={newTopic} />
-            <button>Add a topic</button>
+        <form className={styles.form} onSubmit={handleSubmitTopic}>
+            <label htmlFor="newTopic" className={styles.label}>Add a topic: </label>
+            <input 
+                id="newTopic" 
+                type="text" 
+                ref={newTopic} 
+                className={styles.input} 
+                placeholder="Enter topic here..." 
+            />
+            <button className={styles.button}>Add Topic</button>
         </form>
     )
 }
